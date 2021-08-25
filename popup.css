@@ -1,0 +1,72 @@
+/* #check-btn { 
+    display: none;
+    position: fixed;
+}
+#check-btn:checked ~ .menubars { 
+    display: block
+}
+.btn-label, button{
+    cursor: pointer;
+}
+.menubars {
+    display: none;
+}
+.menubars>li{
+    list-style: none;
+} */
+/* Dropup Button */
+/* The container <div> - needed to position the dropup content */
+.dropbtn {
+    color: black;
+    padding: 16px;
+    border-color: none;
+}
+
+.dropup {
+    position: relative;
+    display: inline-block;
+    margin-top: 200px;
+}
+
+/* Dropup content (Hidden by Default) */
+.dropup-content {
+    display: none;
+    position: absolute;
+    bottom: 50px;
+    min-width: 160px;
+    z-index: 1;
+}
+
+/* Links inside the dropup */
+.dropup-content button {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    color: black;
+    display: block;
+}
+
+/* Change color of dropup links on hover */
+.dropup-content button:hover {background-color: #ddd}
+
+/* Show the dropup menu on hover */
+.dropup:hover .dropup-content {
+    display: block;
+    margin: 16px;
+}
+
+/* Change the background color of the dropup button when the dropup content is shown */
+.dropup:hover .dropbtn {
+    background-color: rgba(255, 255, 232, 0.815);
+}
+
+button{
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+img{
+    display: inline-block;
+}
