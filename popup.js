@@ -1,10 +1,13 @@
 const items = document.querySelector('.list');
 const itemPlus = document.querySelector('.add');
+document.querySelector('ul').addEventListener('click',checkToDo);
+
 itemPlus.addEventListener('click', e => {
     let thisElement = e.target;
     if(thisElement.nodeName !== 'I'){
         thisElement = e.target.firstElementChild;
     }
+
     const itemElement = document.createElement('li');
     itemElement.classList.add('item');
     const checkTag = document.createElement('input');
@@ -21,18 +24,7 @@ itemPlus.addEventListener('click', e => {
     items.append(itemElement);
 
     textTag.focus();
-    // else if (thisElement.classList.contains('fa-check')) {
-    //     const itemTitles = document.querySelectorAll('.item--title');
-    //     const itemTitle = itemTitles[itemTitles.length-1];
-    //     if(itemTitle.value === null || itemTitle.value === '') {
-    //         const items = document.querySelectorAll('.item');
-    //         items[items.length-1].remove();
-    //     }
-    //     itemTitle.setAttribute('disabled', true);
-    //     itemTitle.style.border = 'none';
-    //     itemTitle.style.backgroundColor = 'transparent';
-    //     thisElement.classList.remove('fa-check');
-    //     thisElement.classList.add('fa-plus-circle');
+   
     }
 );
 const deleteBtns = document.querySelectorAll('.fa-trash-alt');
@@ -45,6 +37,16 @@ items.addEventListener('click',e=>{
             e.target.parentElement.parentElement.remove();
     }
 });
+
+function checkToDo(e){
+    const todo = e.target.nextSibling;
+    if(e.target.checked){
+        todo.style.color = "#dddddd";
+    }else{
+        todo.style.color = "#000000";
+    }
+}
+
 window.addEventListener('keydown',e=>{
     if(e.keyCode !== 13) {
         e.stopPropagation();
