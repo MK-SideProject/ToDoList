@@ -1,6 +1,8 @@
-const items = document.querySelector('.list');
-const itemPlus = document.querySelector('.add');
+let items = document.querySelector('.list');
+let itemPlus = document.querySelector('.add');
+let deleteBtns = document.querySelector('.delete');
 document.querySelector('ul').addEventListener('click',checkToDo);
+// document.getElementById(deleteBtns).addEventListener('click', deleteSelect);
 
 itemPlus.addEventListener('click', e => {
     let thisElement = e.target;
@@ -8,42 +10,53 @@ itemPlus.addEventListener('click', e => {
         thisElement = e.target.firstElementChild;
     }
 
-    const itemElement = document.createElement('li');
+    let itemElement = document.createElement('li');
     itemElement.classList.add('item');
-    const checkTag = document.createElement('input');
+    let checkTag = document.createElement('input');
     checkTag.setAttribute('type','checkbox');
     checkTag.classList.add('item--check');
-    const textTag = document.createElement('input');
+    let textTag = document.createElement('input');
     textTag.setAttribute('type','text');
     textTag.classList.add('item--title');
-    const spanTag = document.createElement('span');
-    spanTag.classList.add('item--delete');
-    spanTag.innerHTML = `<i class="fas fa-trash-alt"></i>`;
+    let removeTag = document.createElement('button');
+    removeTag.classList.add('list--remove');
+    const x = document.createTextNode("X");
+    removeTag.appendChild(x);
+    // const spanTag = document.createElement('span');
+    // spanTag.classList.add('item--delete');
+    // spanTag.innerHTML = `<i class="fas fa-trash-alt"></i>`;
 
-    itemElement.append(checkTag,textTag,spanTag);
+    itemElement.append(checkTag,textTag,removeTag);
     items.append(itemElement);
 
     textTag.focus();
    
     }
 );
-const deleteBtns = document.querySelectorAll('.fa-trash-alt');
-items.addEventListener('click',e=>{
-    if(e.target.classList.contains('fa-trash-alt')){
-        const checkboxs = document.querySelectorAll('.item--check:checked');
-        if(checkboxs.length > 0)
-            checkboxs.forEach(item => item.parentElement.remove());
-        else
-            e.target.parentElement.parentElement.remove();
-    }
-});
+// deleteBtns.addEventListener('click',e=>{
+
+//         const checkboxs = document.querySelectorAll('.item--check:checked');
+//         let remove = e.target.checkboxs;
+//         let par
+    
+// });
+
+// function deleteSelect(e){
+   
+    
+// }
+
+
 
 function checkToDo(e){
     const todo = e.target.nextSibling;
     if(e.target.checked){
         todo.style.color = "#dddddd";
+        todo.style.textDecoration = "line-through";
+
     }else{
         todo.style.color = "#000000";
+        todo.style.textDecoration = "none"
     }
 }
 
