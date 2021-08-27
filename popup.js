@@ -2,7 +2,6 @@ let items = document.querySelector('.list');
 let itemPlus = document.querySelector('.add');
 let deleteBtns = document.querySelector('.delete');
 document.querySelector('ul').addEventListener('click',checkToDo);
-// document.getElementById(deleteBtns).addEventListener('click', deleteSelect);
 
 itemPlus.addEventListener('click', e => {
     let thisElement = e.target;
@@ -33,18 +32,16 @@ itemPlus.addEventListener('click', e => {
    
     }
 );
-// deleteBtns.addEventListener('click',e=>{
 
-//         const checkboxs = document.querySelectorAll('.item--check:checked');
-//         let remove = e.target.checkboxs;
-//         let par
-    
-// });
+deleteBtns.addEventListener('click', e=>{
 
-// function deleteSelect(e){
-   
+        var checkboxs = document.querySelectorAll('.item--check:checked');
+        checkboxs.forEach(item => item.parentElement.remove());
+           
     
-// }
+});
+
+
 
 
 
