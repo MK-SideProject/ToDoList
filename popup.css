@@ -25,8 +25,8 @@ ul {
     justify-content: space-between;
     width: 40%;
     height: 90%;
-    /* min-height: 800px;
-    min-width: 600px; */
+    /* min-height: 800px; */
+    min-width: 600px;
     border-radius: 30px;
     background-color: white;
 }
@@ -39,6 +39,18 @@ ul {
     flex-basis: 80%;
 }
 
+.dropup {
+    position: relative;
+    display: inline-block;
+    margin-left: 82%;
+    align-items: center;
+    justify-content: center;
+}
+.dropup button{
+    width: 30%;
+    height: 10%;
+}
+
 button{
     cursor: pointer;
     border-radius: 50%;
@@ -48,24 +60,15 @@ button{
 
 img{
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .dropbtn {
     color: black;
-    margin-bottom: 30px;
-    width: 40px;
-    height: 40px;
+    margin: 10px 10px 30px 15px;
 }
-
-.dropup {
-    position: relative;
-    display: inline-block;
-    margin-left: 80%;
-}
-
-
 
 .item {
     margin : 20px 0;
@@ -79,19 +82,22 @@ img{
     margin : 0 10px;
     border: none;
 }
+.list--remove {
+    border: none;
+    background-color: white;
+    font-size: 20px;
+}
 /* Dropup content (Hidden by Default) */
 .dropup-content {
     display: none;
     position: absolute;
-    bottom: 90px;
-    min-width: 160px;
+    bottom: 80px;
     z-index: 1;
-    margin-left: 5px;
+    margin: 5px;
 }
 
 /* Links inside the dropup */
 .dropup-content button {
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     display: flex;
     justify-content: center;
     align-items: center;
