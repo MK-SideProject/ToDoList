@@ -1,7 +1,10 @@
 let items = document.querySelector('.list');
 let itemPlus = document.querySelector('.add');
 let deleteBtns = document.querySelector('.delete');
+let reset = document.querySelector('.reset');
 document.querySelector('ul').addEventListener('click',checkToDo);
+reset.addEventListener('click', resetToDo);
+
 
 itemPlus.addEventListener('click', e => {
     let thisElement = e.target;
@@ -28,6 +31,9 @@ itemPlus.addEventListener('click', e => {
     itemElement.append(checkTag,textTag,removeTag);
     items.append(itemElement);
 
+    removeTag.addEventListener('click', deleteToDo);
+    
+
     textTag.focus();
    
     }
@@ -41,9 +47,16 @@ deleteBtns.addEventListener('click', e=>{
     
 });
 
+function deleteToDo(e){
+    let remove = e.target.parentElement;
+    let parentElement = remove.parentElement;
+    parentElement.removeChild(remove);
+}
 
+function resetToDo(e){
+    let ul = document.querySelector('.list').innerHTML = '';
 
-
+}
 
 function checkToDo(e){
     const todo = e.target.nextSibling;

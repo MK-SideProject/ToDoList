@@ -2,7 +2,7 @@
     "name": "ToDoList",
     "version": "1.0",
     "manifest_version" : 1,
-    "description": "간단하게 할 일을 추가하고 삭제 할 수 있습니다.",
+    "description": "간단하게 할 일을 추가하고 체크박스, 삭제버튼을 통해 생산성 있는 하루를 도와드릴 수 있습니다.",
     "background": {
       "scripts": ["background.js"],
       "persistent": false
@@ -10,7 +10,9 @@
     "content_scripts": {
       "js": ["content.js"]
     },
-    "permissions": ["storage"],  
+    "permissions": [
+        "storage"
+    ],  
     "browser_action": {    
       "default_icon": "favicon.png",    
       "default_popup": "popup.html"  
