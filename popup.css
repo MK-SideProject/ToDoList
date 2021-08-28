@@ -75,6 +75,7 @@ img{
 }
 
 .item {
+    display: block;
     margin : 20px 0;
 }
 .item--check {
@@ -87,9 +88,16 @@ img{
     border: none;
 }
 .list--remove {
+    visibility: hidden;
     border: none;
     background-color: white;
     font-size: 20px;
+}
+.item:hover > .list--remove{
+    visibility: visible;
+}
+.item--title:focus ~ .list--remove{
+    visibility: visible;
 }
 /* Dropup content (Hidden by Default) */
 .dropup-content {
@@ -97,7 +105,7 @@ img{
     position: absolute;
     bottom: 80px;
     z-index: 1;
-    margin: 10px;
+    margin-left: 10px;
 }
 
 /* Links inside the dropup */
