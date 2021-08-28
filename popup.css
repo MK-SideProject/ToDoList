@@ -25,7 +25,7 @@ ul {
     justify-content: space-between;
     width: 40%;
     height: 90%;
-    /* min-height: 800px; */
+    min-height: 800px;
     min-width: 600px;
     border-radius: 30px;
     background-color: white;
@@ -47,8 +47,12 @@ ul {
     justify-content: center;
 }
 .dropup button{
-    width: 30%;
+    width: 25%;
     height: 10%;
+}
+.dropup-content button{
+    width: 20%;
+    height: 5%;
 }
 
 button{
@@ -93,7 +97,7 @@ img{
     position: absolute;
     bottom: 80px;
     z-index: 1;
-    margin: 5px;
+    margin: 10px;
 }
 
 /* Links inside the dropup */
