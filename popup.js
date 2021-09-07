@@ -1,17 +1,24 @@
 let items = document.querySelector('.list');
+const toDoInput = items.querySelector("input");
 let itemPlus = document.querySelector('.add');
 let deleteBtns = document.querySelector('.delete');
-let reset = document.querySelector('.reset');
+let reset = document.querySelector('.reset')
+
 document.querySelector('ul').addEventListener('click',checkToDo);
+itemPlus.addEventListener('click', add);
 reset.addEventListener('click', resetToDo);
 
 
-itemPlus.addEventListener('click', e => {
+const TODOS_LS = "toDos";
+let toDos = [];
+loadToDos();
+
+function add (e){
+//itemPlus.addEventListener('click', e => {
     let thisElement = e.target;
     if(thisElement.nodeName !== 'I'){
         thisElement = e.target.firstElementChild;
     }
-
     let itemElement = document.createElement('li');
     itemElement.classList.add('item');
     let checkTag = document.createElement('input');
@@ -24,37 +31,67 @@ itemPlus.addEventListener('click', e => {
     removeTag.classList.add('list--remove');
     const x = document.createTextNode("X");
     removeTag.appendChild(x);
-    // const spanTag = document.createElement('span');
-    // spanTag.classList.add('item--delete');
-    // spanTag.innerHTML = `<i class="fas fa-trash-alt"></i>`;
+   
+    const newId = toDos.length + 1;
 
-    itemElement.append(checkTag,textTag,removeTag);
-    items.append(itemElement);
+    itemElement.appendChild(checkTag);
+    itemElement.appendChild(textTag);
+    itemElement.appendChild(removeTag);
+    itemElement.id=newId;
+
 
     removeTag.addEventListener('click', deleteToDo);
-    
 
+    const toDoObj = { // toDos 배열안에 넣을 정보를 setup 
+        checkTag: checkTag,
+        textTag: textTag,
+        removeTag: removeTag,
+        id: newId
+    };
+    items.append(itemElement);
+    toDos.push(toDoObj);
+    handleSubmit();
     textTag.focus();
+    saveToDos();
    
     }
-);
+//);
+
+
+function handleSubmit() {
+    //event.preventDefault(); // 엔터를 눌러도 submit이 작동하지 않도록 기본 기능을 정지시킴
+    const currentValue = toDoInput.value;
+    add(currentValue);
+    toDoInput.value = "";
+}
+
+function saveToDos(){
+    localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
+}
 
 deleteBtns.addEventListener('click', e=>{
 
         var checkboxs = document.querySelectorAll('.item--check:checked');
         checkboxs.forEach(item => item.parentElement.remove());
+        saveToDos();
            
     
 });
 
 function deleteToDo(e){
-    let remove = e.target.parentElement;
-    let parentElement = remove.parentElement;
-    parentElement.removeChild(remove);
+    let li = e.target.parentElement;
+    //let parentElement = remove.parentElement;
+    //parentElement.removeChild(remove);
+    //toDos = parentElement;
+    li.remove();
+    toDos = toDos.filter((toDo)=> toDo.id !== parseInt(li.id));
+    saveToDos();
 }
 
 function resetToDo(e){
     let ul = document.querySelector('.list').innerHTML = '';
+    toDos = ul;
+    saveToDos();
 
 }
 
@@ -68,6 +105,12 @@ function checkToDo(e){
         todo.style.color = "#000000";
         todo.style.textDecoration = "none"
     }
+    saveToDos();
+}
+
+function loadToDos(){
+    const loadedToDos = localStorage.getItem(TODOS_LS);
+
 }
 
 window.addEventListener('keydown',e=>{
