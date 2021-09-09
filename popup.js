@@ -11,7 +11,7 @@ reset.addEventListener('click', resetToDo);
 
 const TODOS_LS = "toDos";
 let toDos = [];
-loadToDos();
+//loadToDos();
 
 function add (e){
 //itemPlus.addEventListener('click', e => {
@@ -19,40 +19,53 @@ function add (e){
     if(thisElement.nodeName !== 'I'){
         thisElement = e.target.firstElementChild;
     }
+
+
+    var todoId = items.children.length+1;
+
     let itemElement = document.createElement('li');
+    itemElement.setAttribute('id',todoId);
     itemElement.classList.add('item');
+
+    const newId = toDos.length + 1;
+
     let checkTag = document.createElement('input');
     checkTag.setAttribute('type','checkbox');
     checkTag.classList.add('item--check');
+
     let textTag = document.createElement('input');
-    textTag.setAttribute('type','text');
+    textTag.setAttribute('type','innerText');
     textTag.classList.add('item--title');
+
     let removeTag = document.createElement('button');
     removeTag.classList.add('list--remove');
     const x = document.createTextNode("X");
     removeTag.appendChild(x);
    
-    const newId = toDos.length + 1;
+
 
     itemElement.appendChild(checkTag);
     itemElement.appendChild(textTag);
     itemElement.appendChild(removeTag);
-    itemElement.id=newId;
+    todoId = newId;
 
+   // let text = document.getElementById('newId').value;
+    //document.getElementById("textTag").innerText = text;
 
+    items.appendChild(itemElement);
     removeTag.addEventListener('click', deleteToDo);
 
-    const toDoObj = { // toDos 배열안에 넣을 정보를 setup 
-        checkTag: checkTag,
-        textTag: textTag,
-        removeTag: removeTag,
+   const toDoObj = { // toDos 배열안에 넣을 정보를 setup 
+        textTag,
         id: newId
     };
-    items.append(itemElement);
+    
+   
     toDos.push(toDoObj);
-    handleSubmit();
+    //handleSubmit();
     textTag.focus();
     saveToDos();
+    console.log(itemElement);
    
     }
 //);
