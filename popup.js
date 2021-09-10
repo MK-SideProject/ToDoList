@@ -1,8 +1,8 @@
 let items = document.querySelector('.list');
-const toDoInput = items.querySelector("input");
 let itemPlus = document.querySelector('.add');
 let deleteBtns = document.querySelector('.delete');
 let reset = document.querySelector('.reset')
+const toDoInput = document.getElementById("itemPlus");
 
 document.querySelector('ul').addEventListener('click',checkToDo);
 itemPlus.addEventListener('click', add);
@@ -16,12 +16,13 @@ let toDos = [];
 function add (e){
 //itemPlus.addEventListener('click', e => {
     let thisElement = e.target;
+
     if(thisElement.nodeName !== 'I'){
         thisElement = e.target.firstElementChild;
     }
 
 
-    var todoId = items.children.length+1;
+    let todoId = items.children.length+1;
 
     let itemElement = document.createElement('li');
     itemElement.setAttribute('id',todoId);
@@ -34,7 +35,8 @@ function add (e){
     checkTag.classList.add('item--check');
 
     let textTag = document.createElement('input');
-    textTag.setAttribute('type','innerText');
+    textTag.setAttribute('id',todoId);
+    textTag.setAttribute('type','Text');
     textTag.classList.add('item--title');
 
     let removeTag = document.createElement('button');
@@ -43,40 +45,43 @@ function add (e){
     removeTag.appendChild(x);
    
 
-
     itemElement.appendChild(checkTag);
     itemElement.appendChild(textTag);
     itemElement.appendChild(removeTag);
+
     todoId = newId;
 
-   // let text = document.getElementById('newId').value;
+    
+   // textTag = textTag.value;
+
+    
+    //console.log(text);
     //document.getElementById("textTag").innerText = text;
 
     items.appendChild(itemElement);
+
     removeTag.addEventListener('click', deleteToDo);
 
    const toDoObj = { // toDos 배열안에 넣을 정보를 setup 
-        textTag,
+        textTag : textTag.value,
         id: newId
     };
     
-   
     toDos.push(toDoObj);
     //handleSubmit();
     textTag.focus();
-    saveToDos();
-    console.log(itemElement);
+
+    saveToDos()
+    
+
+    
+    console.log(textTag);
    
     }
 //);
 
 
-function handleSubmit() {
-    //event.preventDefault(); // 엔터를 눌러도 submit이 작동하지 않도록 기본 기능을 정지시킴
-    const currentValue = toDoInput.value;
-    add(currentValue);
-    toDoInput.value = "";
-}
+
 
 function saveToDos(){
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
@@ -129,7 +134,9 @@ function loadToDos(){
 window.addEventListener('keydown',e=>{
     if(e.keyCode !== 13) {
         e.stopPropagation();
+        //saveToDos();
         return;
     }
     itemPlus.click();
+
 })
